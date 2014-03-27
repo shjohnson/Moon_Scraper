@@ -9,7 +9,8 @@ class Moon
   def first_full_moon_date(selected_year)
     @doc = Nokogiri::HTML(open("http://www.timeanddate.com/calendar/moonphases.html?year=#{selected_year}&n=0"))
     @date = @doc.at_css(get_correct_css_selector).content
-    puts @date
+    puts "The first full moon for #{selected_year} is #{@date}"
+    @date
   end
 
   def get_correct_css_selector
@@ -23,7 +24,7 @@ class Moon
 
   def get_input_year
     selected_year = gets.chomp    
-    if vaild_year?(selected_year)
+    if valid_year?(selected_year)
       first_full_moon_date(selected_year)
     else
       puts "#{selected_year} is invaild, please select a year between 1 and 2100"
@@ -31,7 +32,7 @@ class Moon
     end
   end
 
-  def vaild_year?(selected_year)
+  def valid_year?(selected_year)
     if (1..2100).member?(selected_year.to_i) 
       true
     else
@@ -40,6 +41,6 @@ class Moon
   end 
 
 end
-# puts "To find out the first full mooon for a year please type the year (up to 2100)"
-# Moon.new.get_input_year
+puts "To find out the first full mooon for a year please type the year (up to 2100)"
+Moon.new.get_input_year
 

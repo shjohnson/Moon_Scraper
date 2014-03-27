@@ -15,9 +15,20 @@ describe Moon do
         input_year = '1901'
         subject.stub(:gets).and_return(input_year)
         subject.should_receive(:vaild_year?).with(input_year).and_return(true)
+        subject.should_receive(:first_full_moon_date).with(input_year).and_return("a date")
         subject.get_input_year
       end
     end
+
+    # describe "when the input year is invalid" do
+    #   it "it will call get_input_year" do
+    #     input_year = '2202'
+    #     subject.stub(:gets).and_return(input_year, '1900')
+    #     subject.should_receive(:vaild_year?).with(input_year).and_return(false, true)
+  
+    #     subject.get_input_year
+    #   end
+    # end
 
 	end
 
